@@ -1,13 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 
 app = FastAPI()
 
 class TodoItem(BaseModel):
-    title: str
-    description: Optional[str] = None
-    completed: bool = False
+    titulo: str
+    concluida: bool = False
 
 class TodoItemResponse(TodoItem):
     id: int
