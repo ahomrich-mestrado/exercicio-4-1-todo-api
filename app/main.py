@@ -50,3 +50,12 @@ def update_tarefa(tarefa_id: int, item: TodoItem):
             todos[i] = TodoItemResponse(id=tarefa_id, **item.model_dump())
             return todos[i]
     raise HTTPException(status_code=404, detail="Tarefa não encontrada")
+
+
+@app.delete("/tarefas/{tarefa_id}", status_code=204)
+def delete_tarefa(tarefa_id: int):
+    for i, todo in enumerate(todos):
+        if todo.id == tarefa_id:
+            todos.pop(i)
+            return
+    raise HTTPException(status_code=404, detail="Tarefa não encontrada")
